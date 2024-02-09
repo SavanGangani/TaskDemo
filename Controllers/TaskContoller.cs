@@ -27,6 +27,6 @@ namespace TaskDemo.Controllers
         public IActionResult Error()
         {
             return View("Error!");
-        }
-    }
+        }
+    }
 }

@@ -1,8 +1,18 @@
+using Npgsql;
+using TaskDemo.BAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddSession();
+builder.Services.AddScoped<UserHelper>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<NpgsqlConnection>((ServiceProvider) =>
+{
+    var connectionString = ServiceProvider.GetRequiredService<IConfiguration>().GetConnectionString("DefaultConnection");
+    return new NpgsqlConnection(connectionString);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -13,11 +23,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSession(); 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

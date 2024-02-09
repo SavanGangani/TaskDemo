@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TaskDemo.BAL;
+using TaskDemo.Models;
 
 namespace TaskDemo.Controllers
 {
@@ -12,10 +14,14 @@ namespace TaskDemo.Controllers
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
+        private readonly UserHelper _userHelper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(UserHelper userHelper, IHttpContextAccessor httpContextAccessor)
         {
-            _logger = logger;
+            // _logger = logger;
+            _userHelper = userHelper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult Index()
@@ -24,14 +30,36 @@ namespace TaskDemo.Controllers
         }
 
 
-         public IActionResult Login()
+        [HttpGet]
+        public IActionResult Login()
         {
             return View();
         }
 
-
-          public IActionResult Register()
+        [HttpPost]
+        public IActionResult Login(User user)
         {
+            int rowcount = _userHelper.Login(user);
+            if (rowcount == 1)
+            {
+                return RedirectToAction("Index", "Task");
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+            // return View();
+        }
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(User user)
+        {
+            _userHelper.Register(user);
             return View();
         }
 
@@ -40,6 +68,10 @@ namespace TaskDemo.Controllers
         public IActionResult Error()
         {
             return View("Error!");
-        }
-    }
+        }
+    }
 }
+
+
+
+// Context.Session.GetString

@@ -7,14 +7,16 @@ namespace TaskDemo.Models
 {
     public class Task
     {
-        public int id { set; get; }
+        public int  c_taskid { set; get; }
 
-        public string name { set; get; }
+        public string c_tasktypeid { set; get; }
 
-        public int taskType { set; get; }
+        public int c_taskissue { set; get; }
 
-        public string todayDate { set; get; }
+        public string c_initialdate { set; get; }
 
-        public string dueDate { set; get; }
+        public string c_duedate { set; get; }
+        public string c_status { set; get; }
+
     }
 }

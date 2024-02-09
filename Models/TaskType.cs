@@ -7,8 +7,8 @@ namespace TaskDemo.Models
 {
     public class TaskType
     {
-        public int id { set; get; }
+        public int  c_tasktypeid { set; get; }
 
-        public string taskType { set; get; }
+        public string c_tasktype { set; get; }
     }
 }

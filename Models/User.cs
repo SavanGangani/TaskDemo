@@ -7,12 +7,11 @@ namespace TaskDemo.Models
 {
     public class User
     {
-        public int id { set; get; }
-        public string userName { set; get; }
-        public string email { set; get; }
-
-        public string password { set; get; }
-        public string role { set; get; }
-        public string userType { set; get; }
+        public int c_userid { set; get; }
+        public string c_username { set; get; }
+        public string c_email { set; get; }
+        public string c_password { set; get; }
+        public string c_usertype { set; get; }
+        public string c_role { set; get; }
     }
 }

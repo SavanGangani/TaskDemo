@@ -1,0 +1,86 @@
+@model List<MyTask>
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Task Manager</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-link nav-link" onclick="myTask()">MyTask</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-link nav-link" onclick="logout()">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container mt-5">
+    @* <button class="btn btn-primary mb-3" onclick="addTask()">Add Task</button> *@
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                @* <th scope="col">TaskType</th> *@
+                <th scope="col">Date</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td>@task.c_taskid</td>
+                    <td>@task.c_taskissue</td>
+                    @* <td style="width:200px; border:2px solid; padding: 20px 5px; ">@task.c_tasktype</td> *@
+                    <td>@task.c_initialdate.ToString("dd-MM-yyyy")</td>
+                    <td>@task.c_duedate.ToString("dd-MM-yyyy")</td>
+                    <td>@task.c_status</td>
+                    <td><a asp-route-id="@task.c_taskid" asp-action="AddToMyTask"><button
+                                class="btn btn-secondary">Add</button></a></td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/_framework/aspnetcore-browser-refresh.js"></script>
+
+<script>
+    function logout() {
+        window.location.href = '@Url.Action("Login", "User")';
+        var session = _httpContextAccessor.HttpContext.Session;
+        var uname = "";
+        session.SetString("username", uname);
+         Console.WriteLine(HttpContext.Session.GetString("username"));
+    }
+
+    function myTask() {
+        window.location.href = '@Url.Action("MyTask", "Task")';
+
+    }
+
+    function addTask() {
+        console.log("My Tasks clicked");
+    }
+
+</script>

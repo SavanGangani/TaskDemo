@@ -1,0 +1,51 @@
+@model TaskDemo.Models.MyTask
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Task</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Add Task</h2>
+
+        <form asp-action="Add" method="post">
+
+            <div class="form-group">
+                <label asp-for="c_tasktypeid">Task Typee:</label>
+                <select asp-for="c_tasktypeid" class="form-control">
+                    <option value="">Select Task</option>
+                    <option value="Hardware">Hardware</option>
+                    <option value="Software">Software</option>
+                </select>
+                <span asp-validation-for="c_tasktypeid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="c_taskissue">Task Issue:</label>
+                <input type="text" class="form-control" name="c_taskissue" required>
+            </div>
+            <div class="form-group">
+                <label for="c_initialdate">Initial Date:</label>
+                <input type="date" class="form-control" name="c_initialdate" required>
+            </div>
+            <div class="form-group">
+                <label for="c_duedate">Due Date:</label>
+                <input type="date" class="form-control" name="c_duedate" required>
+            </div>
+            <div class="form-group">
+                <label for="c_status">Status:</label>
+                <input type="text" class="form-control" name="c_status" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

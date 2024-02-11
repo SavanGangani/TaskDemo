@@ -27,6 +27,7 @@ namespace TaskDemo.Controllers
         public IActionResult Index()
         {
             return View();
+            HttpContext.Session.SetString("username", "");
         }
 
 
@@ -42,7 +43,17 @@ namespace TaskDemo.Controllers
             int rowcount = _userHelper.Login(user);
             if (rowcount == 1)
             {
-                return RedirectToAction("Index", "Task");
+                if (HttpContext.Session.GetString("role") == "admin")
+                {
+                    Console.WriteLine(HttpContext.Session.GetString("role"));
+                    return RedirectToAction("Index", "Task");
+                }
+                else
+                {
+                    Console.WriteLine(HttpContext.Session.GetString("role"));
+                    return RedirectToAction("TaskManager", "Task");
+                }
+
             }
             else
             {
@@ -53,14 +64,21 @@ namespace TaskDemo.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            if (HttpContext.Session.GetString("role") == "admin")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
         }
 
         [HttpPost]
         public IActionResult Register(User user)
         {
             _userHelper.Register(user);
-            return View();
+            return RedirectToAction("Index", "Task");
         }
 
 

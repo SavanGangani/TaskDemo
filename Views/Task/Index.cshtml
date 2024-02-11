@@ -1,4 +1,4 @@
-@Context.Session.GetString("role")
+@* @Context.Session.GetString("role") *@
 @using TaskDemo.Models
 
 @model List<MyTask>
@@ -6,98 +6,11 @@
 @{
     ViewData["Title"] = "index";
 }
+<h2>List Of Task</h2>
+<a href="/Task/Add"> <button class="btn btn-primary">Add Task</button> </a>
+<a href="/User/Register"><button class="btn btn-primary">Register</button></a>
 
-<style>
-    .content-container {
-        text-align: center;
-    }
-
-    .table-container {
-        max-width: 80%;
-        overflow-x: auto;
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 150%;
-        margin-top: 20px;
-        overflow: hidden;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        background: #fff;
-        border-radius: 10px;
-
-    }
-
-    th,
-    td {
-        border: 2px solid #6f6f6f;
-        padding: 15px;
-        text-align: left;
-    }
-
-    th {
-        background-color: #185d1a;
-        color: white;
-    }
-
-    tr:hover {
-        background-color: #f8f8f8;
-    }
-
-    .action-buttons a {
-        display: inline-block;
-        margin: 2px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 12px;
-        text-decoration: none;
-        color: white;
-        cursor: pointer;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .details-btn {
-        background-color: #3498db;
-    }
-
-    .edit-btn {
-        background-color: #2ecc71;
-    }
-
-    .delete-btn {
-        background-color: #e74c3c;
-    }
-
-    h2 {
-        color: #3498db;
-    }
-
-    .add-btn {
-        margin: 8px;
-        padding: 10px 24px;
-        border: none;
-        border-radius: 12px;
-        background-color: #e67e22;
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-        display: inline-block;
-        transition: 0.3s;
-    }
-
-    .add-btn:hover {
-        background-color: #d35400;
-    }
-</style>
-
-<h2>List Of Student</h2>
-
-<p style="margin-block: 22px;">
-    <a class="add-btn" asp-controller="StudentView" asp-action="Add">Add StudentData</a>
-</p>
-
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
@@ -105,10 +18,12 @@
             <th>Task Type</th>
             <th>Assign Date</th>
             <th>Due Date</th>
-
+            <th>Status</th>
+            <th>c_taskusername</th>
         </tr>
     </thead>
     <tbody>
+
         @foreach (var task in Model)
 
         {
@@ -116,45 +31,16 @@
                 <td>@task.c_taskid</td>
                 <td>@task.c_tasktypeid</td>
                 <td>@task.c_taskissue</td>
-                <td>@task.c_initialdate</td>
-                <td>@task.c_duedate</td>
+                <td>@task.c_initialdate.ToString("dd-MM-yyyy")</td>
+                <td>@task.c_duedate.ToString("dd-MM-yyyy")</td>
                 <td>@task.c_status</td>
-
+                <td>@task.c_taskusername</td>
                 <td class="action-buttons">
-                    <a class="details-btn" asp-action="Details" asp-route-id="@task.c_taskid">Details</a>
-                    <a class="edit-btn" asp-action="Edit" asp-route-id="@task.c_taskid">Edit</a>
-                    <a class="delete-btn" asp-action="Delete" asp-route-id="@task.c_taskid">Delete</a>
+                    <a class="edit-btn" asp-action="Edit" asp-route-id="@task.c_taskid"><button class="btn btn-secondary">Edit</button></a>
+                    <a class="delete-btn" asp-action="Delete" asp-route-id="@task.c_taskid"><button class="btn btn-danger">Delete</button></a>
                 </td>
             </tr>
         }
     </tbody>
 
 </table>
-@* @section scripts {
-<script>
-var inactivityTimeout;
-var maxInactivityDuration = 6000; // 1 minute in milliseconds
-
-function resetInactivityTimer() {
-clearTimeout(inactivityTimeout);
-inactivityTimeout = setTimeout(logout, maxInactivityDuration);
-}
-
-function logout() {
-// Redirect to logout action
-window.location.href = '@Url.Action("Logout", "User")';
-}
-
-// Reset the inactivity timer on user interactions
-$(document).on('mousemove keydown', function () {
-resetInactivityTimer();
-});
-
-$('a').on('click', function () {
-resetInactivityTimer();
-});
-
-// Initial setup
-resetInactivityTimer();
-  </script>
-} *@

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xdO6o6lNzBsPjhGTxFhT08i/5FO94kVxC4bXZZ1+U+QsEDdoswaYsn9m3NfEEgrWxkT1hqyaX2i7ybROfPsYjA==",
+  "dgSpecHash": "PVPWwwGFAEhUbMT5pTRhkb1DL5o6wOvwX6ZKXPtNqFWh5IJIxDtdOdV+xn6lLkqv7NcWRZfxD8kI2oJpKlNlbw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\Downloads\\TaskDemo\\TaskDemo\\TaskDemo.csproj",
+  "projectFilePath": "F:\\PPSU\\sem-08\\casepoint\\CoreMvc\\TaskDemo\\TaskDemo\\TaskDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",

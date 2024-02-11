@@ -1,0 +1,18 @@
+@model MyTask
+
+@{
+    ViewData["Title"] = "GetTaskDetails";
+}
+
+<h2>Task Details</h2>
+
+<div>
+    <strong>Task ID:</strong> @Model.c_taskid <br>
+    <strong>Task Type:</strong> @Model.c_tasktypeid <br>
+    <strong>Task Issue:</strong> @Model.c_taskissue <br>
+    <strong>Initial Date:</strong> @Model.c_initialdate.ToString("dd-MM-yyyy") <br>
+    <strong>Due Date:</strong> @Model.c_duedate.ToString("dd-MM-yyyy") <br>
+    <strong>Status:</strong> @Model.c_status <br>
+</div><br>
+
+<a asp-action="Index" class="btn btn-primary">Back to List</a>

@@ -10,6 +10,8 @@ namespace TaskDemo.Models
         public int  c_taskid { set; get; }
 
         public string c_tasktypeid { set; get; }
+        public int c_tasktid { set; get; }
+        public string c_tasktype {set; get;}
 
         public string c_taskissue { set; get; }
 
@@ -17,5 +19,7 @@ namespace TaskDemo.Models
 
         public DateTime c_duedate { set; get; }
         public string c_status { set; get; }
+
+        public string c_taskusername {set; get;}
     }
 }
